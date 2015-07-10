@@ -2,6 +2,9 @@
 
     if (!window.registerTrigger) {
         var triggers = {
+            "changeUrl": function (evt, m) {
+                location.href = m;
+            },
             "reload": function (evt) {
                 location.reload();
             }

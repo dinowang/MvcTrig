@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerExtensions.cs" />
     <Compile Include="HttpHeaderStringEncodeConverter.cs" />
     <Compile Include="MessagePack.cs" />
     <Compile Include="MessageExtensions.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="TriggerActionFilter.cs" />
     <Compile Include="TriggerHelper.cs" />
     <Compile Include="MessageType.cs" />
+    <Compile Include="WebPageBaseExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

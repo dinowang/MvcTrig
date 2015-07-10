@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -15,6 +16,14 @@ namespace Hexon.MvcTrig
     public class TriggerHelper
     {
         #region Static
+
+        //static TriggerHelper()
+        //{
+        //    if (!GlobalFilters.Filters.Any(x => x.GetType() == typeof(TriggerActionFilter)))
+        //    {
+        //        GlobalFilters.Filters.Add(new TriggerActionFilter());    
+        //    }
+        //}
 
         public static bool HasTrigger
         {
@@ -125,6 +134,8 @@ namespace Hexon.MvcTrig
 
         #endregion
 
+        public string Tag { get; set; }
+
         public void Add(string name, object data, bool lowPiority = false)
         {
             var list = lowPiority 
@@ -172,49 +183,6 @@ namespace Hexon.MvcTrig
             _currentScope = TriggerScope.Top;
             call.Invoke(this);
             _currentScope = TriggerScope.Self;
-
-            return this;
-        }
-
-
-        ///// <summary>
-        ///// 關閉父視窗的 fancyboxㄝ, 通常是 dialog 用來關閉自己用的
-        ///// 這是一種簡化的寫法，等同於 Trigger.Parent(x => x.FancyClose())
-        ///// </summary>
-        ///// <returns></returns>
-        //public TriggerHelper ParentFancyClose()
-        //{
-        //    _currentScope = TriggerScope.Parent;
-        //    Add("fancyClose", true, lowPiority: true);
-
-        //    _currentScope = TriggerScope.Self;
-
-        //    return this;
-        //}
-
-        ///// <summary>
-        ///// 關閉父視窗的 fancyboxㄝ, 通常是 dialog 用來關閉自己用的
-        ///// 這是一種簡化的寫法，等同於 Trigger.Top(x => x.FancyClose())
-        ///// </summary>
-        ///// <returns></returns>
-        //public TriggerHelper TopFancyClose()
-        //{
-        //    _currentScope = TriggerScope.Top;
-        //    Add("fancyClose", true, lowPiority: true);
-
-        //    _currentScope = TriggerScope.Self;
-
-        //    return this;
-        //}
-
-        /// <summary>
-        /// 變更網址
-        /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        public TriggerHelper ChangeUrl(string url)
-        {
-            Add("changeUrl", url);
 
             return this;
         }
@@ -274,19 +242,19 @@ namespace Hexon.MvcTrig
             var response = _context.Response;
 
             response.AddHeader("X-Triggers", commands.Count().ToString());
+            response.AddHeader("X-TrigFrom", Tag);
             var i = 0;
 
             foreach (var command in commands)
             {
-                var data = CreateHttpHeaderSafeParameterContext(command);
-
                 var pack = new
                 {
                     scope = command.Scope, 
                     trigger = command.Trigger, 
-                    data = data
+                    data = command.Data
                 };
-                var content = JsonConvert.SerializeObject(data, new JsonSerializerSettings
+
+                var content = JsonConvert.SerializeObject(pack, new JsonSerializerSettings
                 {
                     Formatting = Formatting.None,
                     Converters = new[]
@@ -294,70 +262,9 @@ namespace Hexon.MvcTrig
                         new HttpHeaderStringEncodeConverter()
                     }
                 });
-                //var content = _context.Server.UrlPathEncode(pack.ToJson());
-                //var content = HttpUtility.UrlEncode(pack.ToJson());
 
                 response.AddHeader("X-Trigger-" + (i++), content);
             }
-        }
-
-        private object CreateHttpHeaderSafeParameterContext(TriggerCommand command)
-        {
-            var data = command.Data;
-            
-            if (data != null)
-            {
-                var type = data.GetType();
-
-                if (type.IsValueType)
-                {
-                }
-                else if (type == typeof(string))
-                {
-                    data = HttpUtility.UrlPathEncode(data.ToString());
-                }
-                else
-                {
-                    var properties = type.GetProperties();
-                    var values = new List<object>();
-                    var ctor = type.GetConstructors().Where(x => !x.GetParameters().Any()).Any();
-
-                    if (ctor)
-                    {
-                        data = Activator.CreateInstance(type);
-
-                        foreach (var property in properties)
-                        {
-                            var value = property.GetValue(command.Data, null);
-
-                            if (property.PropertyType == typeof (string) && value != null)
-                            {
-                                value = HttpUtility.UrlPathEncode(value.ToString());
-                            }
-
-                            property.SetValue(data, value, null);
-                        }
-                    }
-                    else
-                    {
-                        foreach (var property in properties)
-                        {
-                            var value = property.GetValue(command.Data, null);
-
-                            if (property.PropertyType == typeof (string) && value != null)
-                            {
-                                value = HttpUtility.UrlPathEncode(value.ToString());
-                            }
-
-                            values.Add(value);
-                        }
-
-                        data = Activator.CreateInstance(type, values.ToArray());
-                    }
-                }
-            }
-
-            return data;
         }
 
         /// <summary>
@@ -387,7 +294,6 @@ namespace Hexon.MvcTrig
                         target = "0";
                         break;
                 }
-                //sb.AppendFormat("console.log(['trigger', {0}, targets[{0}].document, $(targets[{0}].document)]);\n", target);
                 sb.AppendFormat("targets[{0}].getTrigger(\"{1}\").apply(targets[{0}], [null, {2}]);\n", target, command.Trigger, JsonConvert.SerializeObject(command.Data, Formatting.None));
 
             }
@@ -395,23 +301,24 @@ namespace Hexon.MvcTrig
 
             var tag = new TagBuilder("script");
             tag.Attributes["type"] = "text/javascript";
+            tag.Attributes["data-trig"] = Tag;
             tag.InnerHtml = sb.ToString();
 
-            //response.Write(tag);
+            response.Write(tag);
 
-            response.Filter = new ContentFilter(response.Filter, x =>
-            {
-                if (! string.IsNullOrEmpty(x) && Regex.IsMatch(x, "</body>"))
-                {
-                    x = Regex.Replace(x, @"</body>", tag + "$0");
-                }
-                else
-                {
-                    x += tag;
-                }
+            //response.Filter = new ContentFilter(response.Filter, x =>
+            //{
+            //    if (! string.IsNullOrEmpty(x) && Regex.IsMatch(x, "</body>"))
+            //    {
+            //        x = Regex.Replace(x, @"</body>", tag + "$0");
+            //    }
+            //    else
+            //    {
+            //        x += tag;
+            //    }
 
-                return x;
-            });
+            //    return x;
+            //});
 
         }
     }
