@@ -6,7 +6,7 @@
             if (m.width) opt.width = m.width;
             if (m.height) opt.height = m.height;
 
-            $.fancybox(m.url, opt);
+            openFancybox(m.url, opt);
         });
 
         window.registerTrigger("fancyClose", function (evt, m) {
