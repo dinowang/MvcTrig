@@ -79,8 +79,10 @@
     <Compile Include="JQueryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TriggerActionFilter.cs" />
-    <Compile Include="TriggerHelper.cs" />
+    <Compile Include="TriggerCommand.cs" />
+    <Compile Include="TriggerContext.cs" />
     <Compile Include="MessageType.cs" />
+    <Compile Include="TriggerScope.cs" />
     <Compile Include="WebPageBaseExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

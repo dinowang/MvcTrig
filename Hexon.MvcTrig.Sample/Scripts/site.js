@@ -71,7 +71,7 @@ $(document).ready(function () {
             }
 
             openFancybox(this.href, opts);
-            
+
             return false;
         });
 

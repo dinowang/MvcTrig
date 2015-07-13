@@ -5,9 +5,9 @@ namespace Hexon.MvcTrig
 {
     public static class ControllerExtensions
     {
-        public static TriggerHelper Trig(this Controller controller, Func<TriggerHelper, TriggerHelper> invocation = null)
+        public static TriggerContext Trig(this Controller controller, Func<TriggerContext, TriggerContext> invocation = null)
         {
-            var trig = TriggerHelper.Current;
+            var trig = TriggerContext.Current;
 
             if (invocation != null)
             {

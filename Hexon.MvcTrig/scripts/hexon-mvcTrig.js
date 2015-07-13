@@ -33,7 +33,7 @@
                     var pack = JSON.parse(decodeURIComponent(data)),
                         action = window.getTrigger(pack.trigger);
 
-                    action.apply(targets[pack.scope].document.body, [m.evt, pack.data]);
+                    action.apply(targets[pack.scope].document.body, [m.evt, pack.data, m.xhr]);
                 });
             }
         });

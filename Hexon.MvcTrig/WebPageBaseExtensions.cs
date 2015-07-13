@@ -5,9 +5,9 @@ namespace Hexon.MvcTrig
 {
     public static class WebPageBaseExtensions
     {
-        public static TriggerHelper Trig(this WebPageBase controller, Func<TriggerHelper, TriggerHelper> invocation = null)
+        public static TriggerContext Trig(this WebPageBase controller, Func<TriggerContext, TriggerContext> invocation = null)
         {
-            var trig = TriggerHelper.Current;
+            var trig = TriggerContext.Current;
 
             if (invocation != null)
             {

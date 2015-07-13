@@ -10,6 +10,7 @@ namespace Hexon.MvcTrig.Sample
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.js",
                         "~/Scripts/jquery.fancybox.js",
                         "~/Scripts/hexon-mvcTrig.js",
                         "~/Scripts/hexon-mvcTrig.message.js",

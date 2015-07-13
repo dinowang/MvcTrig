@@ -13,52 +13,46 @@ using Newtonsoft.Json.Linq;
 
 namespace Hexon.MvcTrig
 {
-    public class TriggerHelper
+    public class TriggerContext
     {
         #region Static
 
-        //static TriggerHelper()
-        //{
-        //    if (!GlobalFilters.Filters.Any(x => x.GetType() == typeof(TriggerActionFilter)))
-        //    {
-        //        GlobalFilters.Filters.Add(new TriggerActionFilter());    
-        //    }
-        //}
+        internal static string _identifier = "D85DCDD2-2DBE-47DA-A810-73169E9BECFE_TriggerContext";
 
         public static bool HasTrigger
         {
             get
             {
-                var trigger = HttpContext.Current.Items["TriggerHelper"] as TriggerHelper;
+                var trigger = HttpContext.Current.Items[_identifier] as TriggerContext;
 
                 if (trigger == null)
                 {
-                    trigger = HttpContext.Current.Session["TriggerHelper"] as TriggerHelper;
+                    trigger = HttpContext.Current.Session[_identifier] as TriggerContext;
                 }
 
                 return trigger != null && trigger.Count > 0;
             }
         }
 
-        public static TriggerHelper Current
+        public static TriggerContext Current
         {
             get
             {
-                var trigger = HttpContext.Current.Items["TriggerHelper"] as TriggerHelper;
+                var trigger = HttpContext.Current.Items[_identifier] as TriggerContext;
 
                 if (trigger == null)
                 {
-                    trigger = HttpContext.Current.Session["TriggerHelper"] as TriggerHelper;
+                    trigger = HttpContext.Current.Session[_identifier] as TriggerContext;
 
                     if (trigger != null)
                     {
                         // Probely come from previous action (302)
-                        HttpContext.Current.Session.Remove("TriggerHelper");
-                        HttpContext.Current.Items["TriggerHelper"] = trigger = new TriggerHelper(HttpContext.Current, trigger);
+                        HttpContext.Current.Session.Remove(_identifier);
+                        HttpContext.Current.Items[_identifier] = trigger = new TriggerContext(HttpContext.Current, trigger);
                     }
                     else
                     {
-                        HttpContext.Current.Items["TriggerHelper"] = trigger = new TriggerHelper(HttpContext.Current);
+                        HttpContext.Current.Items[_identifier] = trigger = new TriggerContext(HttpContext.Current);
                     }
                 }
 
@@ -82,50 +76,14 @@ namespace Hexon.MvcTrig
 
         #endregion
 
-        #region Inner classes
-
-        enum TriggerScope
-        {
-            Self,
-            Parent,
-            Top
-        }
-
-        class TriggerCommand
-        {
-            public TriggerScope Scope { get; private set; }
-
-            public string Trigger { get; private set; }
-
-            public object Data { get; private set; }
-
-            public TriggerCommand(TriggerScope scope, string name, object data)
-            {
-                Scope = scope;
-                Trigger = name;
-                Data = data;
-            }
-        }
-
-        class MessagePack
-        {
-            public string title { get; set; }
-            public string message { get; set; }
-            public MessageType type { get; set; }
-            public int timeout { get; set; }
-        }
-
-
-        #endregion
-
         #region Constructors
 
-        private TriggerHelper(HttpContext context)
+        private TriggerContext(HttpContext context)
         {
             _context = context;
         }
 
-        private TriggerHelper(HttpContext context, TriggerHelper copyFrom) 
+        private TriggerContext(HttpContext context, TriggerContext copyFrom) 
         {
             _context = context;
             _commands = copyFrom._commands;
@@ -164,7 +122,7 @@ namespace Hexon.MvcTrig
         /// </summary>
         /// <param name="call"></param>
         /// <returns></returns>
-        public TriggerHelper Parent(Action<TriggerHelper> call)
+        public TriggerContext Parent(Action<TriggerContext> call)
         {
             _currentScope = TriggerScope.Parent;
             call.Invoke(this);
@@ -178,7 +136,7 @@ namespace Hexon.MvcTrig
         /// </summary>
         /// <param name="call"></param>
         /// <returns></returns>
-        public TriggerHelper Top(Action<TriggerHelper> call)
+        public TriggerContext Top(Action<TriggerContext> call)
         {
             _currentScope = TriggerScope.Top;
             call.Invoke(this);
@@ -191,7 +149,7 @@ namespace Hexon.MvcTrig
         /// 重新載入本頁
         /// </summary>
         /// <returns></returns>
-        public TriggerHelper Reload()
+        public TriggerContext Reload()
         {
             Add("reload", null);
 
@@ -202,7 +160,7 @@ namespace Hexon.MvcTrig
         /// 強迫採用 AJAX 機制 (HTTP header)
         /// </summary>
         /// <returns></returns>
-        public TriggerHelper AsAjaxTrigger()
+        public TriggerContext AsAjaxTrigger()
         {
             _forceAjaxTrigger = true;
 
@@ -294,7 +252,7 @@ namespace Hexon.MvcTrig
                         target = "0";
                         break;
                 }
-                sb.AppendFormat("targets[{0}].getTrigger(\"{1}\").apply(targets[{0}], [null, {2}]);\n", target, command.Trigger, JsonConvert.SerializeObject(command.Data, Formatting.None));
+                sb.AppendFormat("targets[{0}].getTrigger(\"{1}\").apply(targets[{0}], [null, {2}, null]);\n", target, command.Trigger, JsonConvert.SerializeObject(command.Data, Formatting.None));
 
             }
             sb.Append("})(jQuery);");

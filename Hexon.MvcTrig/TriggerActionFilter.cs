@@ -19,7 +19,7 @@ namespace Hexon.MvcTrig
 
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            if (_flush && filterContext.ParentActionViewContext == null && TriggerHelper.HasTrigger)
+            if (_flush && filterContext.ParentActionViewContext == null && TriggerContext.HasTrigger)
             {
                 var httpContext = filterContext.RequestContext.HttpContext;
                 var response = httpContext.Response;
@@ -27,14 +27,14 @@ namespace Hexon.MvcTrig
                 if (response.StatusCode == 302)
                 {
                     // HTTP Redirect
-                    httpContext.Session["TriggerHelper"] = TriggerHelper.Current;
+                    httpContext.Session[TriggerContext._identifier] = TriggerContext.Current;
                 }
                 else
                 {
                     var routeData = filterContext.RouteData;
 
-                    TriggerHelper.Current.Tag = string.Concat(routeData.Values["controller"], ".", routeData.Values["action"]);
-                    TriggerHelper.Current.Flush();
+                    TriggerContext.Current.Tag = string.Concat(routeData.Values["controller"], ".", routeData.Values["action"]);
+                    TriggerContext.Current.Flush();
                 }
             }
         }

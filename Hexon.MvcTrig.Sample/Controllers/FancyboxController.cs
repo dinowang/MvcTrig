@@ -17,13 +17,13 @@ namespace Hexon.MvcTrig.Sample.Controllers
 
             return View();
         }
-        
+
         public ActionResult Restore()
         {
             this.Trig().Parent(x => x.FancyClose());
 
             return View("Edit");
         }
-        
+
     }
 }

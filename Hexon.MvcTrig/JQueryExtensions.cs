@@ -9,7 +9,7 @@ namespace Hexon.MvcTrig
         /// <param name="eventName"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static TriggerHelper RaiseEvent(this TriggerHelper trigger, string selector, string eventName, object data)
+        public static TriggerContext RaiseEvent(this TriggerContext trigger, string selector, string eventName, object data)
         {
             trigger.Add("event", new FireEventPack
             {

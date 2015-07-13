@@ -6,7 +6,7 @@ namespace Hexon.MvcTrig.Fancybox
         /// 關閉目前視窗中的 fancybox
         /// </summary>
         /// <returns></returns>
-        public static TriggerHelper FancyClose(this TriggerHelper trigger)
+        public static TriggerContext FancyClose(this TriggerContext trigger)
         {
             trigger.Add("fancyClose", true, lowPiority: true);
 
@@ -20,7 +20,7 @@ namespace Hexon.MvcTrig.Fancybox
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static TriggerHelper FancyOpen(this TriggerHelper trigger, string url, int? width = null, int? height = null)
+        public static TriggerContext FancyOpen(this TriggerContext trigger, string url, int? width = null, int? height = null)
         {
             trigger.Add("fancyOpen", new FancyboxPack
             {
@@ -40,7 +40,7 @@ namespace Hexon.MvcTrig.Fancybox
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static TriggerHelper FancyOpen(this TriggerHelper trigger, string url, string width = null, string height = null)
+        public static TriggerContext FancyOpen(this TriggerContext trigger, string url, string width = null, string height = null)
         {
             trigger.Add("fancyOpen", new FancyboxPack
             {
@@ -60,7 +60,7 @@ namespace Hexon.MvcTrig.Fancybox
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static TriggerHelper FancyResize(this TriggerHelper trigger, string width = null, string height = null)
+        public static TriggerContext FancyResize(this TriggerContext trigger, string width = null, string height = null)
         {
             trigger.Add("fancyResize", new FancyboxPack
             {

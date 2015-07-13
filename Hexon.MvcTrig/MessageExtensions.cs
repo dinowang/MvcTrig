@@ -10,7 +10,7 @@ namespace Hexon.MvcTrig
         /// <param name="type"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public static TriggerHelper Notify(this TriggerHelper trigger, object message, string title = null, MessageType type = MessageType.Info, int timeout = 2000)
+        public static TriggerContext Notify(this TriggerContext trigger, object message, string title = null, MessageType type = MessageType.Info, int timeout = 2000)
         {
             trigger.Add("notify", new MessagePack
             {
@@ -31,7 +31,7 @@ namespace Hexon.MvcTrig
         /// <param name="type"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public static TriggerHelper Message(this TriggerHelper trigger, object message, string title = null, MessageType type = MessageType.Info, int timeout = 2000)
+        public static TriggerContext Message(this TriggerContext trigger, object message, string title = null, MessageType type = MessageType.Info, int timeout = 2000)
         {
             trigger.Add("message", new MessagePack
             {
