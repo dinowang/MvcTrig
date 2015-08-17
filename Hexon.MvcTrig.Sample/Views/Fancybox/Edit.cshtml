@@ -1,6 +1,7 @@
-﻿@using (Html.BeginForm("Edit", "Fancybox", FormMethod.Post))
-{
-    <input type="submit" value="Save" />
+﻿@{
+    Layout = null;
+}
 
-    @Html.ActionLink("Cancel", "Restore")
+@using (Html.BeginForm("Edit", "Fancybox", FormMethod.Post))
+{
 }

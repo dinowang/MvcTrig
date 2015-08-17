@@ -10,19 +10,14 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Script-less ViewResult</h2>
-        <p></p>
-        <p><a class="btn btn-default" href="#">See how &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
         <h2>Integrate with Bootstrap</h2>
         <p></p>
-        <p>@Ajax.ActionLink(Html.Encode("See how &raquo;"), "Modal", "Bootstrap", null, new AjaxOptions { }, new { @class = "btn btn-default" })</p>
+        <p>@Ajax.ActionLink(HttpUtility.HtmlDecode("See how &raquo;"), "Modal", "Bootstrap", null, new AjaxOptions { }, new { @class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
         <h2>Integrate with Notification</h2>
         <p></p>
-        <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
+        <p>@Ajax.ActionLink(HttpUtility.HtmlDecode("Learn more &raquo;"), "About", "Home", null, new AjaxOptions { }, new { @class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
         <h2>Integrate with Fancybox</h2>

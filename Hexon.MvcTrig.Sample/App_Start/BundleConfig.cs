@@ -16,6 +16,7 @@ namespace Hexon.MvcTrig.Sample
                         "~/Scripts/hexon-mvcTrig.message.js",
                         "~/Scripts/hexon-mvcTrig.jquery.js",
                         "~/Scripts/hexon-mvcTrig.fancybox.js",
+                        "~/Scripts/hexon-mvcTrig.bootstrap.js",
                         "~/Scripts/site.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -32,7 +33,10 @@ namespace Hexon.MvcTrig.Sample
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/jquery.fancybox.css",
+                      "~/Content/jquery.fancybox-buttons.css",
+                      "~/Content/jquery.fancybox-thumbs.css"));
         }
     }
 }

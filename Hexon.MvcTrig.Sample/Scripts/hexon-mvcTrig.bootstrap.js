@@ -2,7 +2,7 @@
     if (window.registerTrigger) {
 
         window.registerTrigger("modalOpen", function (evt, m, xhr) {
-            console.log(arguments);
+            $(m).modal();
         });
 
         window.registerTrigger("modalClose", function (evt, m, xhr) {
