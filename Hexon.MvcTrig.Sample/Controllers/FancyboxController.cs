@@ -5,6 +5,11 @@ namespace Hexon.MvcTrig.Sample.Controllers
 {
     public class FancyboxController : Controller
     {
+        public ActionResult Greeting()
+        {
+            return View();
+        }
+
         public ActionResult Edit()
         {
             return View();
