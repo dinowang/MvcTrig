@@ -18,14 +18,14 @@ namespace Hexon.MvcTrig.Sample.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            this.Trig().Parent(x => x.FancyClose());
+            TriggerContext.Current.Parent(x => x.FancyClose());
 
             return View();
         }
 
         public ActionResult Restore()
         {
-            this.Trig().Parent(x => x.FancyClose());
+            TriggerContext.Current.Parent(x => x.FancyClose());
 
             return View("Edit");
         }

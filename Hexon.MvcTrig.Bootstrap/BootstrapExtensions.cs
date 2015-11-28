@@ -1,4 +1,4 @@
-namespace Hexon.MvcTrig.Bootstrap
+namespace Hexon.MvcTrig
 {
     public static class BootstrapExtensions
     {

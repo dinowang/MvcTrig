@@ -1,4 +1,6 @@
-namespace Hexon.MvcTrig.Fancybox
+using Hexon.MvcTrig.Fancybox;
+
+namespace Hexon.MvcTrig
 {
     public static class FancyboxExtensions
     {

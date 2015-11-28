@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Hexon.MvcTrig.Sample.Models.Card>
+@{
+    Layout = null;
+}
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { data_fancybox = "50%x90%" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { data_fancybox = "50%x90%" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { data_fancybox = "50%x90%" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

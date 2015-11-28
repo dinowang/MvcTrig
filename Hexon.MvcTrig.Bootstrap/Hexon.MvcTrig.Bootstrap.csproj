@@ -7,7 +7,7 @@
     <ProjectGuid>{923B365A-9314-4A74-B620-4D59B24D57FB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hexon.MvcTrig.Bootstrap</RootNamespace>
+    <RootNamespace>Hexon.MvcTrig</RootNamespace>
     <AssemblyName>Hexon.MvcTrig.Bootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

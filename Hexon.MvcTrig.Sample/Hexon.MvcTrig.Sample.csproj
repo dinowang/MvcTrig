@@ -112,11 +112,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BootstrapController.cs" />
+    <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\FancyboxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Card.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +177,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.event.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -194,10 +197,13 @@
     <Content Include="Views\Fancybox\Edit.cshtml" />
     <Content Include="Views\Bootstrap\Modal.cshtml" />
     <Content Include="Views\Fancybox\Greeting.cshtml" />
+    <Content Include="Views\Card\Index.cshtml" />
+    <Content Include="Views\Card\List.cshtml" />
+    <Content Include="Views\Card\Edit.cshtml" />
+    <Content Include="Views\Shared\_DialogLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

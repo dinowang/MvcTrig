@@ -17,7 +17,7 @@ namespace Hexon.MvcTrig.Sample.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            this.Trig(x => x.Message("Hello"));
+            TriggerContext.Current.Message("Hello");
 
             return View();
         }

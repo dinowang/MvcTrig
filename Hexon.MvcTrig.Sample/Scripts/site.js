@@ -7,7 +7,7 @@
         type: "iframe",
         href: url,
         autoSize: true,
-        topRatio: 0,
+        padding: 5,
         scrolling: "no",
         helpers: {
             overlay: {
@@ -48,11 +48,14 @@
 
 $(document).ready(function () {
     
+    // 全站通用開啟燈箱
     $("body")
         .on("click", "a[data-fancybox]", function () {
             var $this = $(this),
                 sizes = $this.data("fancybox").match(/^(\d+%?)(x(\d+%?))?(\s|$)/),
                 opts = { autoSize: true };
+
+            console.log(sizes);
 
             if (sizes) {
                 var w = sizes[1],
@@ -73,6 +76,21 @@ $(document).ready(function () {
             openFancybox(this.href, opts);
 
             return false;
+        });
+
+    // 全站通用重新載入列表
+    $("body")
+        .on("reload-table", function (data) {
+            var $lists = $("[data-table-url]");
+
+            $lists.each(function (i, el) {
+                var $container = $(el),
+                    url = $container.data("table-url");
+
+                $.get(url, null, function (result, status, xhr) {
+                    $container.html(result);
+                });
+            });
         });
 
 });
