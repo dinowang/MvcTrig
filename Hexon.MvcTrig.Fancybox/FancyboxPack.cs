@@ -1,4 +1,4 @@
-namespace Hexon.MvcTrig.Fancybox
+﻿namespace Hexon.MvcTrig.Fancybox
 {
     public class FancyboxPack
     {

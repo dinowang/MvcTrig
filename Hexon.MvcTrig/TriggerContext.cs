@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -104,7 +104,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ²M°£¥Ø«eªº©Ò¦³ trigger «ü¥O
+        /// æ¸…é™¤ç›®å‰çš„æ‰€æœ‰ trigger æŒ‡ä»¤
         /// </summary>
         public void Clear()
         {
@@ -118,7 +118,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ¤Á´« Trigger ªº¾Ş§@½d³ò¨ì¤÷µøµ¡
+        /// åˆ‡æ› Trigger çš„æ“ä½œç¯„åœåˆ°çˆ¶è¦–çª—
         /// </summary>
         /// <param name="call"></param>
         /// <returns></returns>
@@ -132,7 +132,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ¤Á´« Trigger ªº¾Ş§@½d³ò¨ì³»¼hµøµ¡
+        /// åˆ‡æ› Trigger çš„æ“ä½œç¯„åœåˆ°é ‚å±¤è¦–çª—
         /// </summary>
         /// <param name="call"></param>
         /// <returns></returns>
@@ -146,7 +146,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ­«·s¸ü¤J¥»­¶
+        /// é‡æ–°è¼‰å…¥æœ¬é 
         /// </summary>
         /// <returns></returns>
         public TriggerContext Reload()
@@ -157,7 +157,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ±j­¢±Ä¥Î AJAX ¾÷¨î (HTTP header)
+        /// å¼·è¿«æ¡ç”¨ AJAX æ©Ÿåˆ¶ (HTTP header)
         /// </summary>
         /// <returns></returns>
         public TriggerContext AsAjaxTrigger()
@@ -168,7 +168,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ±N©Ò¦³ trigger ©R¥O°e¥X
+        /// å°‡æ‰€æœ‰ trigger å‘½ä»¤é€å‡º
         /// </summary>
         public void Flush()
         {
@@ -192,7 +192,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// Ajax Trigger ³z¹L HTTP header ¶Ç»¼¡A©Ò¥H´Nºâ ActionResult ¬O¦^¶Ç JSON ¤]¨S°İÃD
+        /// Ajax Trigger é€é HTTP header å‚³éï¼Œæ‰€ä»¥å°±ç®— ActionResult æ˜¯å›å‚³ JSON ä¹Ÿæ²’å•é¡Œ
         /// </summary>
         /// <param name="commands"></param>
         private void AjaxTrigger(IEnumerable<TriggerCommand> commands)
@@ -226,7 +226,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// «D Ajax Trigger ³z¹L JavaScript µo°Ê
+        /// é Ajax Trigger é€é JavaScript ç™¼å‹•
         /// </summary>
         /// <param name="commands"></param>
         private void PageTrigger(IEnumerable<TriggerCommand> commands)

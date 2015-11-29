@@ -1,11 +1,11 @@
-using Hexon.MvcTrig.Fancybox;
+ï»¿using Hexon.MvcTrig.Fancybox;
 
 namespace Hexon.MvcTrig
 {
     public static class FancyboxExtensions
     {
         /// <summary>
-        /// Ãö³¬¥Ø«eµøµ¡¤¤ªº fancybox
+        /// é—œé–‰ç›®å‰è¦–çª—ä¸­çš„ fancybox
         /// </summary>
         /// <returns></returns>
         public static TriggerContext FancyClose(this TriggerContext trigger)
@@ -16,7 +16,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ¶}±Ò¤@­Ó fancybox
+        /// é–‹å•Ÿä¸€å€‹ fancybox
         /// </summary>
         /// <param name="url"></param>
         /// <param name="width"></param>
@@ -36,7 +36,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ¶}±Ò¤@­Ó fancybox
+        /// é–‹å•Ÿä¸€å€‹ fancybox
         /// </summary>
         /// <param name="url"></param>
         /// <param name="width"></param>
@@ -56,7 +56,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// ÅÜ°Ê fancybox ³W®æ
+        /// è®Šå‹• fancybox è¦æ ¼
         /// </summary>
         /// <param name="url"></param>
         /// <param name="width"></param>

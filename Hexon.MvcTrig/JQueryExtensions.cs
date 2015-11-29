@@ -1,9 +1,9 @@
-namespace Hexon.MvcTrig
+ï»¿namespace Hexon.MvcTrig
 {
     public static class JQueryExtensions
     {
         /// <summary>
-        /// Ä²µo¤@­Ó DOM ¨Æ¥ó
+        /// è§¸ç™¼ä¸€å€‹ DOM äº‹ä»¶
         /// </summary>
         /// <param name="selector"></param>
         /// <param name="eventName"></param>
