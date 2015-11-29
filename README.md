@@ -1,19 +1,21 @@
 # MvcTrig
+
 ASP.NET MVC Client Trigging Framework
 
 MvcTrig can help developer write clean MVC Views/PartialViews.
 
-The goal of MvcTrig is making View without have scripts directly.
+The goal of project is making View without to have scripts directly.
 
-Instead of issue intents from Actions to frontside, process intents by standard or customized scripts.
+Instead of send intents from Actions to browser, handle intents by generalized or customized scripts.
 
-## Support AJAX calls
+## Support both Page / AJAX requests
 
 MvcTrig support include intents within an AJAX call. And keep HTTP body still clear.
 
 MvcTrig attach intents in HTTP header to simplfy ViewResult and script codes.
 
-## 授權
+## Examples
+
 
 ## License
 
