@@ -1,4 +1,4 @@
-namespace Hexon.MvcTrig
+﻿namespace Hexon.MvcTrig
 {
     internal class TriggerCommand
     {

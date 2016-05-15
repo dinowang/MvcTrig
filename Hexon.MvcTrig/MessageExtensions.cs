@@ -1,9 +1,9 @@
-namespace Hexon.MvcTrig
+ο»Ώnamespace Hexon.MvcTrig
 {
     public static class MessageExtensions
     {
         /// <summary>
-        /// Εγ¥ά³qªΎ
+        /// ι΅―η¤Ίι€η¥
         /// </summary>
         /// <param name="message"></param>
         /// <param name="title"></param>
@@ -24,7 +24,7 @@ namespace Hexon.MvcTrig
         }
 
         /// <summary>
-        /// Εγ¥ά°T®§µψµ΅
+        /// ι΅―η¤Ίθ¨ζ―θ¦–ηª—
         /// </summary>
         /// <param name="message"></param>
         /// <param name="title"></param>

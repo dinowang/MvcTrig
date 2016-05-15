@@ -1,4 +1,4 @@
-namespace Hexon.MvcTrig.Bootstrap
+﻿namespace Hexon.MvcTrig.Bootstrap
 {
     public class ModalPack
     {
